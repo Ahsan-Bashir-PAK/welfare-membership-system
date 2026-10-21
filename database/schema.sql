@@ -1,6 +1,4 @@
 -- Membership, Payments, Welfare & Transfer Management System Schema
-CREATE DATABASE IF NOT EXISTS `membership_system_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `membership_system_db`;
 
 -- 1. Users Table (Authentication and Account Role)
 CREATE TABLE IF NOT EXISTS `users` (

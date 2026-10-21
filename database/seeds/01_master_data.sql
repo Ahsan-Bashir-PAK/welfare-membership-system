@@ -1,4 +1,4 @@
-USE `membership_system_db`;
+-- Master Data Seeds
 
 -- Ranks
 INSERT IGNORE INTO `ranks` (`id`, `name`, `description`, `is_active`) VALUES
