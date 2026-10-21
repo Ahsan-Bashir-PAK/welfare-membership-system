@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const reportsController_js_1 = require("../controllers/reportsController.js");
+const auth_js_1 = require("../middleware/auth.js");
+const router = (0, express_1.Router)();
+router.get('/members', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), reportsController_js_1.getMemberReport);
+router.get('/payments', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), reportsController_js_1.getPaymentReport);
+router.get('/welfare', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), reportsController_js_1.getWelfareReport);
+router.get('/transfers', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), reportsController_js_1.getTransferReport);
+router.get('/organizational-fund', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), reportsController_js_1.getOrganizationalFundReport);
+exports.default = router;

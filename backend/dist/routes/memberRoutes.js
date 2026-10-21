@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const memberController_js_1 = require("../controllers/memberController.js");
+const auth_js_1 = require("../middleware/auth.js");
+const router = (0, express_1.Router)();
+router.get('/', auth_js_1.authenticateToken, memberController_js_1.getMembers);
+router.get('/:id', auth_js_1.authenticateToken, memberController_js_1.getMemberById);
+router.post('/', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), memberController_js_1.createMember);
+router.put('/:id', auth_js_1.authenticateToken, memberController_js_1.updateMember);
+router.patch('/:id/status', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), memberController_js_1.updateMemberStatus);
+router.patch('/:id/membership-date', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), memberController_js_1.updateMembershipDate);
+router.patch('/:id/role', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), memberController_js_1.updateMemberRole);
+router.delete('/:id', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), memberController_js_1.archiveMember);
+exports.default = router;

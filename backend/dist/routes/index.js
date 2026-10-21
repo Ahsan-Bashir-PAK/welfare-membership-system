@@ -1,0 +1,28 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const authRoutes_js_1 = __importDefault(require("./authRoutes.js"));
+const memberRoutes_js_1 = __importDefault(require("./memberRoutes.js"));
+const paymentRoutes_js_1 = __importDefault(require("./paymentRoutes.js"));
+const welfareRoutes_js_1 = __importDefault(require("./welfareRoutes.js"));
+const transferRoutes_js_1 = __importDefault(require("./transferRoutes.js"));
+const dashboardRoutes_js_1 = __importDefault(require("./dashboardRoutes.js"));
+const reportRoutes_js_1 = __importDefault(require("./reportRoutes.js"));
+const masterDataRoutes_js_1 = __importDefault(require("./masterDataRoutes.js"));
+const auditRoutes_js_1 = __importDefault(require("./auditRoutes.js"));
+const settingsRoutes_js_1 = __importDefault(require("./settingsRoutes.js"));
+const router = (0, express_1.Router)();
+router.use('/auth', authRoutes_js_1.default);
+router.use('/members', memberRoutes_js_1.default);
+router.use('/payments', paymentRoutes_js_1.default);
+router.use('/welfare', welfareRoutes_js_1.default);
+router.use('/transfers', transferRoutes_js_1.default);
+router.use('/dashboard', dashboardRoutes_js_1.default);
+router.use('/reports', reportRoutes_js_1.default);
+router.use('/master-data', masterDataRoutes_js_1.default);
+router.use('/audit-logs', auditRoutes_js_1.default);
+router.use('/settings', settingsRoutes_js_1.default);
+exports.default = router;

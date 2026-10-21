@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const masterDataController_js_1 = require("../controllers/masterDataController.js");
+const auth_js_1 = require("../middleware/auth.js");
+const router = (0, express_1.Router)();
+router.get('/', auth_js_1.authenticateToken, masterDataController_js_1.getMasterData);
+router.post('/ranks', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.addRank);
+router.delete('/ranks/:id', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.deleteRank);
+router.post('/zones', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.addZone);
+router.delete('/zones/:id', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.deleteZone);
+router.post('/sectors', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.addSector);
+router.delete('/sectors/:id', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.deleteSector);
+router.post('/beats', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.addBeat);
+router.delete('/beats/:id', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.deleteBeat);
+router.post('/support-areas', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.addSupportArea);
+router.delete('/support-areas/:id', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), masterDataController_js_1.deleteSupportArea);
+exports.default = router;

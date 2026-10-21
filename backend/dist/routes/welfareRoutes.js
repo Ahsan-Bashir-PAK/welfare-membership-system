@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const welfareController_js_1 = require("../controllers/welfareController.js");
+const auth_js_1 = require("../middleware/auth.js");
+const router = (0, express_1.Router)();
+router.get('/', auth_js_1.authenticateToken, welfareController_js_1.getWelfareRecords);
+router.get('/:id', auth_js_1.authenticateToken, welfareController_js_1.getWelfareById);
+router.post('/', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), welfareController_js_1.createWelfare);
+router.post('/:id/post', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), welfareController_js_1.postWelfare);
+router.post('/:id/reverse', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), welfareController_js_1.reverseWelfare);
+exports.default = router;

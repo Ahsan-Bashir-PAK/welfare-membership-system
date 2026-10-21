@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const transferController_js_1 = require("../controllers/transferController.js");
+const auth_js_1 = require("../middleware/auth.js");
+const router = (0, express_1.Router)();
+router.get('/', auth_js_1.authenticateToken, transferController_js_1.getTransfers);
+router.get('/:id', auth_js_1.authenticateToken, transferController_js_1.getTransferById);
+router.post('/', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), transferController_js_1.createTransfer);
+router.post('/:id/post', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin', 'Focal Person'), transferController_js_1.postTransfer);
+router.post('/:id/reverse', auth_js_1.authenticateToken, (0, auth_js_1.requireRole)('Super Admin'), transferController_js_1.reverseTransfer);
+exports.default = router;
